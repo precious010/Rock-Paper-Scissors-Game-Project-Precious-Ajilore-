@@ -54,7 +54,8 @@ class Main {
 
     exitButton = new JButton("Exit");
     exitButton.setBounds(220, 240, 70, 50);
-    //exitButton.addActionListener(e -> System.exit(0));
+    exitButton.setBackground(Color.orange);
+    exitButton.setForeground(Color.black);
     exitButton.addActionListener(new Action());
     exitButton.setFocusable(false);
     panel.add(exitButton);
@@ -143,10 +144,7 @@ class Main {
 
       getInput();
 
-      if (e.getSource() == rock || e.getSource() == paper || e.getSource() == scissors) {
-        round_num++;
-        roundsPlayed.setText(" Round: " + round_num);
-      }
+      
 
       String rock_print = "Your move: Rock" + "\n" + "Computer's move: " + pc;
       String paper_print = "Your move: Paper" + "\n" + "Computer's move: " + pc;
@@ -206,6 +204,11 @@ class Main {
 
         }
 
+      }
+
+      if (e.getSource() == rock || e.getSource() == paper || e.getSource() == scissors) {
+        round_num++;
+        roundsPlayed.setText(" Round: " + round_num);
       }
 
       if (e.getSource()== exitButton){
