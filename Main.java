@@ -42,18 +42,84 @@ class Main {
     frame.setSize(500, 325);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setResizable(false);
-
-    JLabel label = new JLabel("Hello world", SwingConstants.CENTER);
-    frame.add(label);
+    
+    ImageIcon icon = new ImageIcon("newrock.jpg");
+    ImageIcon paperImg = new ImageIcon("papernew.jpg");
+    ImageIcon sciImg = new ImageIcon("scissors.jpg");
    
     JPanel panel = new JPanel();
     frame.add(panel);
     panel.setLayout(null);
+
+    JLabel label = new JLabel("Click on your choice!");
+    label.setBounds(170, 40, 300, 25);
+    panel.add(label);
      
     JButton exitButton = new JButton("Exit");
-    exitButton.setBounds(200,200,100,50);
+    exitButton.setBounds(240,240,80,50);
     exitButton.addActionListener(new Action());
     panel.add(exitButton);
+
+    //////// ROCK BUTTON///////////
+    rock = new JButton("Rock");
+    rock.setBounds(40, 100, 125, 125);
+    rock.addActionListener(new Action());
+    rock.setIcon(icon);
+    rock.setHorizontalTextPosition(JButton.CENTER);
+    rock.setFocusable(false);
+
+    panel.add(rock);
+
+    /////// PAPER BUTTON///////////////
+    paper = new JButton("Paper");
+    paper.setIcon(paperImg);
+    paper.setBounds(195, 100, 125, 125);
+    paper.addActionListener(new Action());
+    paper.setHorizontalTextPosition(JButton.CENTER);
+
+    paper.setFocusable(false);
+
+    panel.add(paper);
+
+    /////// SCISSORS BUTTON////////////
+    scissors = new JButton("Scissors");
+    scissors.setIcon(sciImg);
+    scissors.setBounds(350, 100, 125, 125);
+    scissors.addActionListener(new Action());
+    scissors.setOpaque(true);
+    scissors.setFocusable(false);
+    scissors.setHorizontalTextPosition(JButton.CENTER);
+
+    panel.add(scissors);
+
+
+    ////CLOSE BUTTON/////////
+    close = new JButton ("Close");
+    close.setBounds (350, 300, 100,25);
+    close.addActionListener(new Action());
+    close.setFocusable(false);
+    panel.add(close);
+
+    /// TO DISPLAY THE NUMBER OF TIMES THEY WON//.
+    number_wins = new JTextField(" Your Wins: " + wins);
+    number_wins.setBounds(10, 40, 90, 25);
+    number_wins.setEditable(false);
+    number_wins.setBorder(BorderFactory.createLineBorder(Color.orange));
+    number_wins.setBackground(Color.WHITE);
+    panel.add(number_wins);
+
+    /// TO DISPLAY THE NUMBER OF TIMES THE COMPUTER WON///
+    pc_wins = new JTextField(" Computer's Wins: " + comp_wins);
+    pc_wins.setBounds(350, 40, 130, 25);
+    pc_wins.setEditable(false);
+    pc_wins.setBorder(BorderFactory.createLineBorder(Color.red));
+    pc_wins.setBackground(Color.WHITE);
+    panel.add(pc_wins);
+
+    // choiceRock.setVisible(false);
+    roundsPlayed = new JLabel(" Round: " + round_num);
+    roundsPlayed.setBounds(190, 10, 85, 25);
+    panel.add(roundsPlayed);
 
     frame.setVisible(true);
   }
