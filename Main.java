@@ -15,10 +15,9 @@ import java.awt.event.*;
 import javax.swing.JOptionPane;
 import java.util.*;
 
-
 class Main {
-   
-   static int wins = 0;
+
+  static int wins = 0;
   static int comp_wins = 0;
   static int round_num = 1;
 
@@ -26,27 +25,25 @@ class Main {
   private static JButton rock;
   private static JButton paper;
   private static JButton scissors;
-  private static JButton close;
+  private static JButton exitButton;
   private static JTextField number_wins;
   private static JTextField pc_wins;
   private static JLabel roundsPlayed;
-
-
 
   public static void main(String[] args) {
     new Main();
   }
 
-  public Main(){
-     JFrame frame = new JFrame("Rock, Paper, Scissors");
+  public Main() {
+    JFrame frame = new JFrame("Rock, Paper, Scissors");
     frame.setSize(500, 325);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setResizable(false);
-    
+
     ImageIcon icon = new ImageIcon("newrock.jpg");
     ImageIcon paperImg = new ImageIcon("papernew.jpg");
     ImageIcon sciImg = new ImageIcon("scissors.jpg");
-   
+
     JPanel panel = new JPanel();
     frame.add(panel);
     panel.setLayout(null);
@@ -54,10 +51,12 @@ class Main {
     JLabel label = new JLabel("Click on your choice!");
     label.setBounds(170, 40, 300, 25);
     panel.add(label);
-     
-    JButton exitButton = new JButton("Exit");
-    exitButton.setBounds(220,240,70,50);
-    exitButton.addActionListener(e -> System.exit(0));
+
+    exitButton = new JButton("Exit");
+    exitButton.setBounds(220, 240, 70, 50);
+    //exitButton.addActionListener(e -> System.exit(0));
+    exitButton.addActionListener(new Action());
+    exitButton.setFocusable(false);
     panel.add(exitButton);
 
     //////// ROCK BUTTON///////////
@@ -114,17 +113,109 @@ class Main {
     panel.add(roundsPlayed);
 
     frame.setVisible(true);
+
   }
 
-  public class Action implements ActionListener{
-   public void actionPerformed (ActionEvent e){
-     
-     
-     //if (e.getSource()== exitButton){
-      // frame.close();
-     //}
+  public class Action implements ActionListener {
+    String pc = "";
+    String result = "";
 
-   }
+    public void getInput() {
+
+      Random random_num = new Random();
+      int num = random_num.nextInt(3);
+      if (num == 1) {
+        pc = "Rock";
+      } else if (num == 2) {
+        pc = "Paper";
+      } else {
+        pc = "Scissors";
+      }
+    }
+
+    public String getInfo(){
+      String info = "You played: " + round_num +" round(s) "+ "\n" + "You won: "+ wins + " time(s)";
+      return info;
+
+    }
+
+    public void actionPerformed(ActionEvent e) {
+
+      getInput();
+
+      if (e.getSource() == rock || e.getSource() == paper || e.getSource() == scissors) {
+        round_num++;
+        roundsPlayed.setText(" Round: " + round_num);
+      }
+
+      String rock_print = "Your move: Rock" + "\n" + "Computer's move: " + pc;
+      String paper_print = "Your move: Paper" + "\n" + "Computer's move: " + pc;
+      String scissors_print = "Your move: Scissors" + "\n" + "Computer's move: " + pc;
+
+      if (e.getSource() == rock) {
+        JOptionPane.showMessageDialog(null, rock_print);
+        if (pc.equalsIgnoreCase("Rock")) {
+          result = "It's a TIE!";
+          JOptionPane.showMessageDialog(null, result);
+        } else if (pc.equalsIgnoreCase("Paper")) {
+          result = "Computer Wins!";
+          comp_wins++;
+          JOptionPane.showMessageDialog(null, result);
+          pc_wins.setText(" Computer's wins: " + comp_wins);
+
+        } else {
+          result = "You win!";
+          wins++;
+          JOptionPane.showMessageDialog(null, result);
+          number_wins.setText(" Your Wins: " + wins);
+        }
+      } else if (e.getSource() == paper) {
+        JOptionPane.showMessageDialog(null, paper_print);
+        if (pc.equalsIgnoreCase("Paper")) {
+          result = "It's a Tie!";
+          JOptionPane.showMessageDialog(null, result);
+        } else if (pc.equalsIgnoreCase("Scissors")) {
+          result = "Computer Wins!";
+          comp_wins++;
+          JOptionPane.showMessageDialog(null, result);
+          pc_wins.setText(" Computer's wins: " + comp_wins);
+
+        } else {
+          result = "You win!";
+          wins++;
+          number_wins.setText(" Your Wins: " + wins);
+          JOptionPane.showMessageDialog(null, result);
+        }
+
+      } else if (e.getSource() == scissors) {
+        JOptionPane.showMessageDialog(null, scissors_print);
+        if (pc.equalsIgnoreCase("Scissors")) {
+          result = "It's a Tie!";
+          JOptionPane.showMessageDialog(null, result);
+        } else if (pc.equalsIgnoreCase("Rock")) {
+          result = "Computer Wins!";
+          comp_wins++;
+          JOptionPane.showMessageDialog(null, result);
+          pc_wins.setText(" Computer's wins: " + comp_wins);
+
+        } else {
+          result = "You win!";
+          wins++;
+          JOptionPane.showMessageDialog(null, result);
+          number_wins.setText(" Your Wins: " + wins);
+
+        }
+
+      }
+
+      if (e.getSource()== exitButton){
+        getInfo();
+        JOptionPane.showMessageDialog(null, getInfo());
+        System.exit(0);
+       
+      }
+
+    }
 
   }
 }
