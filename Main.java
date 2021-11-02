@@ -56,8 +56,8 @@ class Main {
     panel.add(label);
      
     JButton exitButton = new JButton("Exit");
-    exitButton.setBounds(240,240,80,50);
-    exitButton.addActionListener(new Action());
+    exitButton.setBounds(220,240,70,50);
+    exitButton.addActionListener(e -> System.exit(0));
     panel.add(exitButton);
 
     //////// ROCK BUTTON///////////
@@ -92,14 +92,6 @@ class Main {
 
     panel.add(scissors);
 
-
-    ////CLOSE BUTTON/////////
-    close = new JButton ("Close");
-    close.setBounds (350, 300, 100,25);
-    close.addActionListener(new Action());
-    close.setFocusable(false);
-    panel.add(close);
-
     /// TO DISPLAY THE NUMBER OF TIMES THEY WON//.
     number_wins = new JTextField(" Your Wins: " + wins);
     number_wins.setBounds(10, 40, 90, 25);
@@ -127,7 +119,7 @@ class Main {
   public class Action implements ActionListener{
    public void actionPerformed (ActionEvent e){
      
-     System.exit(0);
+     
      //if (e.getSource()== exitButton){
       // frame.close();
      //}
