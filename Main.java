@@ -1,12 +1,35 @@
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.JButton;
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import java.awt.Color;
+import java.awt.event.*;
+import javax.swing.JOptionPane;
+import java.util.*;
+
 
 class Main {
+   
+   static int wins = 0;
+  static int comp_wins = 0;
+  static int round_num = 1;
+
+  private static JTextField choice;
+  private static JButton rock;
+  private static JButton paper;
+  private static JButton scissors;
+  private static JButton close;
+  private static JTextField number_wins;
+  private static JTextField pc_wins;
+  private static JLabel roundsPlayed;
 
 
 
@@ -15,10 +38,10 @@ class Main {
   }
 
   public Main(){
-     JFrame frame = new JFrame("Hello world");
-    frame.setSize(300, 300);
-    frame.setLocation(5, 5);
+     JFrame frame = new JFrame("Rock, Paper, Scissors");
+    frame.setSize(500, 325);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setResizable(false);
 
     JLabel label = new JLabel("Hello world", SwingConstants.CENTER);
     frame.add(label);
